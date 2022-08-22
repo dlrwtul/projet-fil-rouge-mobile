@@ -1,0 +1,7 @@
+{
+  "name": "projet-fil-rouge-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
