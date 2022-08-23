@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header-content">
+      <ion-back-button (click)="back()" defaultHref=""></ion-back-button>
+      <ion-title>Details produit</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="(detailsProduit|async) != null">
+    <div>
+      <ion-item>
+        <ion-badge slot="end">{{(detailsProduit|async).produit.prix}} FCFA</ion-badge>
+        <ion-label>{{(detailsProduit|async).produit.nom}}</ion-label>
+      </ion-item>
+      <img class="img" src="data:image/png;base64,{{(detailsProduit|async).produit.image}}">
+      <div class="ion-margin">
+        <h6>Description</h6>
+        <p class="description">
+          {{(detailsProduit|async).produit.description}}
+        </p>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="(detailsProduit|async) == null">
+    <div class="loader-content">
+      <ild-loader></ild-loader>
+    </div>
+  </ng-container>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="ion-justify-content-center ion-padding-horizontal">
+    <ion-button expand="block" horizontal="end" color="dark">Ajouter</ion-button>
+  </ion-toolbar>
+</ion-footer>

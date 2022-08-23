@@ -1,0 +1,48 @@
+ion-card {
+    background-color: rgb(253, 252, 252);
+}
+
+ion-card ion-card-header:first-child {
+    height: 10px;
+}
+
+ion-card-header {
+    img{
+        border-radius: 3%;
+        cursor: pointer;
+        transition: all ease 0.35s;
+    }
+}
+
+.img-card:hover {
+    background-color: rgba($color: black, $alpha: 0.3);
+}
+
+ion-card-content {
+    padding: 2% 5% 3% 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+ion-card {
+    .prixs {
+        margin: 0 1%;
+        border: 2px solid gray;
+        border-radius: 5px;
+        padding: 0.5% 2%;
+        font-size: small;
+        color: gray;
+        font-weight: 600;
+        margin: 1%;
+    }
+}
+
+ion-card-subtitle {
+    color: rgb(13, 12, 12);
+    font-size: 15px;
+}
+
+.prix {
+    font-weight: 600;
+    color: black;
+}

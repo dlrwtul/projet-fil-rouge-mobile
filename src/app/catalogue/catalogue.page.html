@@ -1,0 +1,73 @@
+<ion-header class="ion-no-border" collapse="fade" [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <ion-row class="ion-justify-content-between">
+        <ion-col>Catalogue</ion-col>
+        <ion-col class="col-panier">
+          <div class="panier">
+            <ion-icon name="basket-outline"></ion-icon>
+          </div>
+          <span class="count" >70</span>
+        </ion-col>
+      </ion-row>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ng-container *ngIf="(catalogue$|async) != null">
+  
+  <ion-content [scrollEvents]="true" class="ion-no-border">
+    <ion-slides class="" pager="true" effect="fade" [options]="{ slidesPerView: 1, loop: true,autoplay : true ,speed : 600 }">
+      <ion-slide>
+        <img src="../../assets/img/slide1.jpg" alt="">
+      </ion-slide>
+      <ion-slide>
+        <img src="../../assets/img/slide2.jpg" alt="">
+      </ion-slide>
+      <ion-slide>
+        <img src="../../assets/img/slide3.jpg" alt="">
+      </ion-slide>
+    </ion-slides>
+
+    <ion-item-divider>
+      <ion-label>
+        Nos Produits
+      </ion-label>
+    </ion-item-divider>
+    <ion-segment (ionChange)="segmentChanged($event)" color="dark" class="ion-text-sm-center">
+      <ion-segment-button (click)="index = 'produits'" value="all">
+        <ion-label>All</ion-label>
+      </ion-segment-button>
+      <ion-segment-button (click)="index = 'burgers'" value="burgers">
+        <ion-label>Burgers</ion-label>
+      </ion-segment-button>
+      <ion-segment-button (click)="index = 'menus'" value="menus">
+        <ion-label>Menus</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-item-divider>
+    </ion-item-divider>
+    <ng-container *ngFor="let produit of (catalogue$|async)[index]">
+      <app-card-produit [produit]="produit"></app-card-produit>
+    </ng-container>
+
+    <ng-container *ngIf="showLoader">
+      <div class="loader-content">
+        <ild-loader></ild-loader>
+      </div>
+    </ng-container>
+
+    <ion-fab class="top" vertical="bottom" horizontal="start" dark slot="fixed">
+      <ion-fab-button color="dark" class="totop" (click)="gotToTop()">
+        <ion-icon name="caret-up-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
+</ng-container>
+<ng-container *ngIf="(catalogue$|async) == null">
+  <ion-content>
+    <div class="loader-content">
+      <ild-loader></ild-loader>
+    </div>
+  </ion-content>
+</ng-container>

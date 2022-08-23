@@ -1,0 +1,21 @@
+<ion-card>
+  <ion-card-header class="ion-justify-content-between">
+    <span class="prixs">
+      <span class="prix">{{produit.prix}}</span> FCFA
+    </span>
+    <span>
+    </span>
+  </ion-card-header>
+  <ion-card-header>
+    <a routerLink="/details-produit/{{produit.id}}">
+      <img class="img-card" src="data:image/png;base64,{{produit.image}}" alt="">
+    </a>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-card-subtitle>{{produit.nom}}</ion-card-subtitle>
+    <ion-card-subtitle>
+      <ion-button size="small" color="dark" name="add-outline" tooltip="Ajouter"><ion-icon name="add-outline"></ion-icon></ion-button>
+    </ion-card-subtitle>
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,92 @@
+@import '~swiper/scss';
+@import '~swiper/scss/autoplay';
+@import '~swiper/scss/keyboard';
+@import '~swiper/scss/pagination';
+@import '~swiper/scss/scrollbar';
+@import '~swiper/scss/zoom';
+@import '~swiper/scss/effect-fade';
+@import '~@ionic/angular/css/ionic-swiper';
+
+@mixin rounded-comp {
+    border-radius: 10px;
+    margin: 2% 2% 0 2%;
+}
+
+ion-content {
+    background-color: white;
+}
+
+ion-title {
+    background-color: rgb(254,138,1);
+    color: white;
+    height: 7.5vh;
+    margin: 0 0.5%;
+    @include rounded-comp();
+}
+
+ion-slides {
+    @include rounded-comp();
+}
+
+ion-item {
+    margin: 0 2%;
+    width: 75%;
+    height: 4em;
+    font-size: small;
+    border-radius: 10px;
+}
+ion-select-option {
+    height: 1em;
+}
+
+ion-item-divider {
+    background-color: white;
+}
+
+.loader-content {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.totop {
+    width: 3em;
+    height: 3em;
+    --border-radius: 50% !important;
+}
+
+.top {
+    bottom: 20px;
+}
+
+.panier {
+    width: 1.75em;
+    height: 1.75em;
+    border-radius: 50%;
+    border: 3px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: black, $alpha: 0.1);
+    cursor: pointer;
+}
+
+.col-panier {
+    display: flex;
+    justify-content: end;
+}
+
+.count {
+    font-size: xx-small;
+    width: 15px ;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right: 10px;
+}

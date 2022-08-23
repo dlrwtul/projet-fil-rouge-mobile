@@ -1,0 +1,18 @@
+.header-content {
+    display: flex;
+}
+
+.loader-content {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    --border-radius: 10% !important;
+}
+
+.description {
+    font-size: x-small;
+}
