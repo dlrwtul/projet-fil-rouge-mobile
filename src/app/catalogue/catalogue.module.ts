@@ -11,6 +11,7 @@ import { CataloguePage } from './catalogue.page';
 import { SharedModule } from '../shared/shared.module';
 import { CardProduitComponent } from './components/card-produit/card-produit.component';
 import { PlusMoinsComponent } from './components/plus-moins/plus-moins.component';
+import { FilterPricePipe } from './shared/pipes/filter-price.pipe';
 
 @NgModule({
   imports: [
@@ -22,6 +23,6 @@ import { PlusMoinsComponent } from './components/plus-moins/plus-moins.component
     SharedModule,
     
   ],
-  declarations: [CataloguePage,CardProduitComponent,PlusMoinsComponent]
+  declarations: [CataloguePage,CardProduitComponent,PlusMoinsComponent, FilterPricePipe]
 })
 export class CataloguePageModule {}

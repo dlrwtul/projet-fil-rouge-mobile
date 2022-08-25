@@ -11,7 +11,7 @@
   <ng-container *ngIf="(detailsProduit|async) != null">
     <div>
       <ion-item>
-        <ion-badge slot="end">{{(detailsProduit|async).produit.prix}} FCFA</ion-badge>
+        <ion-badge color="warning" slot="end">{{(detailsProduit|async).produit.prix}} FCFA</ion-badge>
         <ion-label>{{(detailsProduit|async).produit.nom}}</ion-label>
       </ion-item>
       <img class="img" src="data:image/png;base64,{{(detailsProduit|async).produit.image}}">
@@ -20,6 +20,11 @@
         <p class="description">
           {{(detailsProduit|async).produit.description}}
         </p>
+      </div>
+      <div class="counter__section">
+        <ion-button color="dark" class="compteur-btn" (click)="decrement()">-</ion-button>
+        <input #inputCompt (keyup)="compteurVal(inputCompt)" class="compteur-input" [value]="quantiteVal">
+        <ion-button color="dark" class="compteur-btn" (click)="increment()">+</ion-button>
       </div>
     </div>
   </ng-container>

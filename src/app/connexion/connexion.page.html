@@ -1,0 +1,33 @@
+<ion-header class="ion-no-border ion-activatable">
+    <ion-toolbar>
+        <ion-title>
+            Brazil Burger
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content scrollY="false" fullscreen="true" class="ion-justify-content-center ion-align-items-center">
+    <div class="form-div">
+        <div class="header">
+            Se Connecter 
+        </div>
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <ion-item>
+              <ion-label>Login</ion-label>
+              <ion-input type="text" formControlName="login"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Password</ion-label>
+              <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
+            <ion-button [disabled]="myForm.invalid" size="small" color="dark" class="submit-btn" ion-button type="submit" block>Connexion</ion-button>
+        </form>
+        <div class="footer"></div>
+    </div>
+</ion-content>
+<ion-footer class="ion-no-border ion-activatable">
+    <ion-toolbar>
+        <ion-title size="small">
+            Vous n'avez pas de compte ? <a class="a-inscrire" href="">S'inscrire</a>
+        </ion-title>
+    </ion-toolbar>
+</ion-footer>

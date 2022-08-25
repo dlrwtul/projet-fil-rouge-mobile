@@ -1,4 +1,4 @@
-import { CommandeBoissonTaille } from "./commande-boisson-taille"
+import { CommandeBoissonTaille } from "./commande-boisson-taille";
 import { CommandeProduit } from "./commande-produit"
 import { Quartier } from "./quartier";
 import { Ticket } from "./ticket";
@@ -18,6 +18,6 @@ export interface Commande {
     commandeBurgers?: CommandeProduit[];
     commandePortionFrites?: CommandeProduit[];
     commandeProduits?: Array<CommandeProduit|CommandeBoissonTaille>;
-    etat ? : string,
+    etat?: string,
     ticket? : Ticket 
 }

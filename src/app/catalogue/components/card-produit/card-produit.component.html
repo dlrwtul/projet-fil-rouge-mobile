@@ -15,7 +15,7 @@
   <ion-card-content>
     <ion-card-subtitle>{{produit.nom}}</ion-card-subtitle>
     <ion-card-subtitle>
-      <ion-button size="small" color="dark" name="add-outline" tooltip="Ajouter"><ion-icon name="add-outline"></ion-icon></ion-button>
+      <ion-button (click)="presentToast()" size="small" color="dark" name="add-outline" tooltip="Ajouter"><ion-icon name="add-outline"></ion-icon></ion-button>
     </ion-card-subtitle>
   </ion-card-content>
 </ion-card>

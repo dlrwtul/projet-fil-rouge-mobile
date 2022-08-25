@@ -1,0 +1,26 @@
+ion-tab-button {    
+    --color-selected: rgb(254,138,1);
+}
+
+.menu-header {
+    --background: var(--ion-color-bb);
+    color: white;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+ion-item {
+    font-size: small;
+    height: 2.5em;
+    border: 1px solid gainsboro;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    margin: 1% 2%;
+    color: black;
+    cursor: pointer;
+}

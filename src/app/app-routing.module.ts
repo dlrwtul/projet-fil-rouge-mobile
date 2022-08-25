@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './connexion/shared/services/auth.guard';
 
 const routes: Routes = [
   {
@@ -14,6 +15,31 @@ const routes: Routes = [
   {
     path: 'details-produit/:id',
     loadChildren: () => import('./details-produit/details-produit.module').then( m => m.DetailsProduitPageModule)
+  },
+  {
+    path: 'connexion',
+    loadChildren: () => import('./connexion/connexion.module').then( m => m.ConnexionPageModule)
+  },
+  {
+    path: 'panier',
+    loadChildren: () => import('./panier/panier.module').then( m => m.PanierPageModule)
+  },
+  {
+    path: 'mes-commandes',
+    loadChildren: () => import('./mes-commandes/mes-commandes.module').then( m => m.MesCommandesPageModule)
+    ,
+    canActivate : [AuthGuard],
+    data: {
+      role: "ROLE_CLIENT"
+    }
+  },
+  {
+    path: 'inscription',
+    loadChildren: () => import('./inscription/inscription.module').then( m => m.InscriptionPageModule)
+  },
+  {
+    path: 'details-commande',
+    loadChildren: () => import('./details-commande/details-commande.module').then( m => m.DetailsCommandePageModule)
   }
 ];
 @NgModule({

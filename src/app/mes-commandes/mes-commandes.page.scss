@@ -1,0 +1,48 @@
+.en-cours {
+    --background : rgb(59, 59, 231);
+}
+
+ion-item-divider {
+    --background : white ;
+}
+
+.annuler {
+    --background : red;
+}
+
+.details {
+    --background : gray;
+}
+
+.segment {
+    display: flex;
+    justify-content: center;
+    ion-segment {
+        width: 95%;
+    }
+}
+
+.md .segment {
+    ion-segment {
+        ion-label {
+            font-size: small;
+            text-align: center;
+            font-variant-caps: petite-caps;
+        }
+    }
+}
+
+.date-label {
+    display: flex;
+    align-items: center;
+    width: 50px;
+}
+
+.affiche-date {
+    font-size: small;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.date-item {
+}

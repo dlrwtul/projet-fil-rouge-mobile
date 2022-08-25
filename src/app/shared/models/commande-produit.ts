@@ -1,4 +1,4 @@
-import { Produit } from '../../produit/shared/models/produit';
+import { Produit } from "src/app/catalogue/shared/models/produit";
 
 export interface CommandeProduit {
     quantite: number ;

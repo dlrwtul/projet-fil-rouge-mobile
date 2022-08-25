@@ -1,0 +1,51 @@
+.form-div {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    padding: 2%;
+}
+
+.header {
+    border: 1px solid ;
+    width: 100vw;
+    align-self: flex-end;
+    height: 50px;
+    border-radius: 5px;
+    background-color: rgb(254,138,1);
+    color: white;
+    font-size: 1em;
+    padding: 3%;
+    font-weight: bold;
+    margin-right: -50%;
+    margin-top: -35%;
+    transition: all ease 0.35s;
+}
+
+.header.valid {
+    margin-right: -30%;
+}
+
+.submit-btn {
+    margin-top: 35px;
+}
+
+.a-inscrire {
+    text-decoration: none;
+    color:  rgb(254,138,1);
+}
+
+form {
+    height: 33%;
+    border-radius: 5%;
+    width: 100%;
+    padding: 2%;
+    margin: 2% 4%;
+    margin-bottom: -50%;
+}
+
+.footer {
+    height: 33%;
+}

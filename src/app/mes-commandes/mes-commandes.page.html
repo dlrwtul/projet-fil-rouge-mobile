@@ -1,0 +1,65 @@
+<app-header text="Commandes"></app-header>>
+
+<ion-content fullscreen="true">
+  <div class="segment">
+    <ion-segment (ionChange)="segmentChanged($event)" color="dark" class="ion-text-sm-center" shadow="">
+      <ion-segment-button  (click)="etat = 'en cours'" value="en cours" checked>
+        <ion-label color="primary" class="en-cours">En cours</ion-label>
+      </ion-segment-button>
+      <ion-segment-button   (click)="etat = 'valide'" value="valide">
+        <ion-label color="success" class="valide">Validé</ion-label>
+      </ion-segment-button>
+      <ion-segment-button   (click)="etat = 'annule'" value="menu">
+        <ion-label color="danger" class="annule">Annulé</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <br>
+  <ion-item class="date-item">
+    <ion-label class="date-label">
+      <img class="ion-margin-end" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAArUlEQVRIieWVUQ6CQAxEn4bbkHgO4drgl5xCuANfBD+oZlOCtuwiGidpmiVtZ3d2M8COuABVwroZRomouqNal0CrGsY3Eda1QPFqN4/hMXELBx4UgUUSC55ztUTJsTlBtvBdS2fFTOLfl+grCWqgAXLJLpuw2EMjNYPkq6ffQpAHwwdZJyVwnWDNHfRCcpLce5qtFm3u//gz7dROvAGT5S+iYPLzmH/BecVB/xl3Ewdqi0ij2mcAAAAASUVORK5CYII="> 
+      <span>Date filter</span>
+    </ion-label>
+    <ion-datetime-button color="dark" class="affiche-date" datetime="datetime">da</ion-datetime-button>
+  </ion-item>
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime color="bb" size="small"  presentation="date" locale="fr-FR" id="datetime" #datetimes>
+        <ion-buttons slot="buttons">
+          <ion-button color="danger" (click)="datetimes.reset">Reset</ion-button>
+          <ion-button color="warning" (click)="datetimes.cancel">Annuler</ion-button>
+          <ion-button color="success" (click)="datetimes.confirm">Valider</ion-button>
+        </ion-buttons>
+      </ion-datetime>
+    </ng-template>
+  </ion-modal>
+  <ion-item-divider></ion-item-divider>
+  <ion-list shadow="true">
+    <ng-container *ngFor="let commande of commandes$|async">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-label>{{commande.numero}}</ion-label>
+          <ion-label>{{commande.createdAt|date}}</ion-label>
+          <ion-label>{{commande.montant}}</ion-label>
+          <ion-label *ngIf="commande.zone != null">{{commande.zone.libelle}}</ion-label>
+          <ion-label *ngIf="commande.zone == null">Sur place</ion-label>
+          <ion-label>
+            <ion-badge *ngIf="etat == 'en cours'" color="primary">
+              {{commande.etat}}
+            </ion-badge>
+            <ion-badge *ngIf="etat == 'valide'" color="success">
+              {{commande.etat}}
+            </ion-badge>
+            <ion-badge *ngIf="etat == 'annule'" color="danger">
+              {{commande.etat}}
+            </ion-badge>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option *ngIf=" etat == 'en cours'" class="annuler" (click)="true">Annuler</ion-item-option>
+          <ion-item-option routerLink="/details-commandes" class="details" (click)="true">Details</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ng-container>
+  </ion-list>
+</ion-content>

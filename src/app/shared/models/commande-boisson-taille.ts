@@ -1,4 +1,4 @@
-import { BoissonTaille } from "src/app/produit/shared/models/boisson-taille";
+import { BoissonTaille } from "src/app/catalogue/shared/models/boisson-taille";
 
 export interface CommandeBoissonTaille {
     quantite :number;

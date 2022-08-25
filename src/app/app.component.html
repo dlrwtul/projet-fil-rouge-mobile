@@ -1,3 +1,53 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" contentId="main">
+    <ion-header class="ion-no-border" >
+      <ion-toolbar class="menu-header ion-justify-content-start">
+        <ion-title>Brazil Burger</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list class="nav-list">
+        <ion-menu-toggle>
+          <div>
+            <ion-item routerLink="/catalogue"><ion-icon size="small" class="ion-margin-end" name="list-outline"></ion-icon>Catalogue</ion-item>
+            <ion-item *ngIf="isConnected" routerLink="/mes-commandes"><ion-icon size="small" class="ion-margin-end" name="pricetags-outline"></ion-icon>Mes Commandes</ion-item>
+            <ion-item routerLink="/panier"><ion-icon size="small" class="ion-margin-end" name="basket-outline"></ion-icon>Panier</ion-item>
+          </div>
+          <div>
+            <ion-item *ngIf="!isConnected" routerLink="/connexion"><ion-icon class="ion-margin-end" name="person-circle-outline"></ion-icon>Connexion</ion-item>
+          </div>
+        </ion-menu-toggle>
+      </ion-list>
+      
+    </ion-content>
+    <ion-footer class="ion-no-border">
+      <ion-toolbar>
+        <ion-menu-toggle>
+          <ion-item *ngIf="isConnected" (click)="deconnect()"><img class="ion-margin-end" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAABmJLR0QA/wD/AP+gvaeTAAAAyElEQVQokZXSPU5CQQAE4O8Zo60P8CcYoOQExNYKWi5A9AAWtia0GBMOoEfBysMoP9LIESj2PVxXhDjVJjuT2Z2ZzG+0cI0zzPGGaUzIonMFD/jABEvU0cUFnvAlETwj3+IMVbyk9+MdghInaMBB8Yf31DrBEe6Kp4NbtPe4QAcjZIeo4TMh1DHYIrxCH27+4fSoSLyJ+z2CYwz9rMhYiH0XNumVyIUe/hLWRD3FdrmwiBlescAlejgVFrFKRSUawvbOfW9vFhPWMa0dZKxP7XQAAAAASUVORK5CYII=">Deconnexion</ion-item>
+        </ion-menu-toggle>
+      </ion-toolbar>
+    </ion-footer>
+  </ion-menu>
+  <ion-router-outlet id="main">
+    <ion-tabs >
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="catalogue">
+          <ion-icon name="list-outline"></ion-icon>
+        </ion-tab-button>
+    
+        <ion-tab-button *ngIf="isConnected" tab="mes-commandes">
+          <ion-icon name="pricetags-outline"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button *ngIf="!isConnected" tab="connexion">
+          <ion-icon name="person-circle-outline"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="panier">
+          <ion-icon name="basket-outline"></ion-icon>
+          <ion-badge color="warning">70</ion-badge>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-router-outlet>
 </ion-app>

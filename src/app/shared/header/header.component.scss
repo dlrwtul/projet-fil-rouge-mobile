@@ -1,0 +1,72 @@
+@mixin rounded-comp {
+    border-radius: 10px;
+    margin: 2% 2% 0 2%;
+}
+
+ion-header {
+    background-color: white;
+}
+
+@media (max-width: 380px){
+    .ios ion-toolbar{
+      padding-top: 40px;
+      ion-row{
+        height: 7.5vh;
+        padding-top: -35px;
+        border-radius: 10px;
+        color: white;
+        background-color: rgb(254,138,1);
+        ion-column {
+            font-size: 1em;
+        }
+      }
+    }
+}
+
+.md ion-row {
+    background-color: rgb(254,138,1);
+    color: white;
+    height: 7.5vh;
+    @include rounded-comp();
+}
+
+.totop {
+    width: 3em;
+    height: 3em;
+    --border-radius: 50% !important;
+}
+
+.top {
+    bottom: 20px;
+}
+
+.panier {
+    width: 1.75em;
+    height: 1.75em;
+    border-radius: 50%;
+    border: 3px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: black, $alpha: 0.1);
+    cursor: pointer;
+}
+
+.col-panier {
+    display: flex;
+    justify-content: end;
+}
+
+.count {
+    font-size: xx-small;
+    width: 15px ;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right: 10px;
+}

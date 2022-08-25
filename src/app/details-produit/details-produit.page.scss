@@ -16,3 +16,22 @@
 .description {
     font-size: x-small;
 }
+
+.compteur-btn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.counter__section {
+    display: flex;
+    padding: 5% 25%;
+    justify-content: space-between;
+}
+
+.compteur-input {
+    width: 25px;
+    border: 1px solid;
+    border-radius: 3px;
+    text-align: center;
+}

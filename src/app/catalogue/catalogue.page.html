@@ -1,22 +1,9 @@
-<ion-header class="ion-no-border" collapse="fade" [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      <ion-row class="ion-justify-content-between">
-        <ion-col>Catalogue</ion-col>
-        <ion-col class="col-panier">
-          <div class="panier">
-            <ion-icon name="basket-outline"></ion-icon>
-          </div>
-          <span class="count" >70</span>
-        </ion-col>
-      </ion-row>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
+<app-header text="catalogue"></app-header>>
 
 <ng-container *ngIf="(catalogue$|async) != null">
   
-  <ion-content [scrollEvents]="true" class="ion-no-border">
+  <ion-content fullscreen="true" [scrollEvents]="true" class="ion-no-border">
     <ion-slides class="" pager="true" effect="fade" [options]="{ slidesPerView: 1, loop: true,autoplay : true ,speed : 600 }">
       <ion-slide>
         <img src="../../assets/img/slide1.jpg" alt="">
@@ -34,6 +21,7 @@
         Nos Produits
       </ion-label>
     </ion-item-divider>
+
     <ion-segment (ionChange)="segmentChanged($event)" color="dark" class="ion-text-sm-center">
       <ion-segment-button (click)="index = 'produits'" value="all">
         <ion-label>All</ion-label>
@@ -45,14 +33,16 @@
         <ion-label>Menus</ion-label>
       </ion-segment-button>
     </ion-segment>
-    <ion-item-divider>
-    </ion-item-divider>
-    <ng-container *ngFor="let produit of (catalogue$|async)[index]">
-      <app-card-produit [produit]="produit"></app-card-produit>
+    <ion-button class="ion-margin" id="open-modal" size="small" color="warning" horizontal="center"><img class="ion-margin-end" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAABVUlEQVQ4jc3UsS9dYRzG8U/pUCLRSFmFxWKwNN0MkjKgCZt0IGEwY9C53fQPaBEmqwQRQ10miYShg1UYTKRJBYnE1XQ4v5veyL28J5Y+yZOT93l/53t+73nfc/jf9eLBeBKNORmX+FYNeIJXOEqEdeIWbdUKpnGDrgRYV9ROP1W4jFM0P1LThGOsJDxYHQ6xjZcV5muxhZ+oTwFCK84xV2HuK36hPRVWUg/uMFqWjaCIvrywkqZkL34+fBPZs3SG3fAZulHAdXgHA3mAJxgLF3GP7xgPz0f2hcq7WE11sg/hg+wUrEY+jHWsYT9Ph7vRDdmSj8OFyBZQqEnsrgPvsBHj32jAD/8O9wbepi559sF4ExcYwhssif9CSodFzARkMLKPeC/b5deRDeIgpbvOuPYGfAAt2Au3BOwe/SnAcn2KGxcwEV7EH3zOCyupdLCvwoXyzv4CZl5NNN20+1kAAAAASUVORK5CYII=">Filtrer par prix</ion-button>
+
+    <ng-container  *ngIf="!showLoader">
+      <ng-container *ngFor="let produit of (catalogue$|async)[index]|filterPrice:objVal">
+        <app-card-produit [produit]="produit"></app-card-produit>
+      </ng-container>
     </ng-container>
 
     <ng-container *ngIf="showLoader">
-      <div class="loader-content">
+      <div class="ion-padding-top">
         <ild-loader></ild-loader>
       </div>
     </ng-container>
@@ -62,10 +52,25 @@
         <ion-icon name="caret-up-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
+    <ion-modal
+      trigger="open-modal"
+      [initialBreakpoint]="0.25"
+      [breakpoints]="[0, 0.25, 0.5, 0.75]"
+      handleBehavior="cycle"
+    >
+      <ng-template>
+        <ion-content class="ion-padding">
+          <div class="filter-prix ion-margin-top">
+            <ion-label>Prix</ion-label>
+            <ion-range class="ion-margin-top" (ionChange)="onIonChange($event)" [min]="minPrice" [max]="maxPrice" [pin]="true" [ticks]="true" [dualKnobs]="true" [value]="objVal"></ion-range>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </ion-content>
 </ng-container>
 <ng-container *ngIf="(catalogue$|async) == null">
-  <ion-content>
+  <ion-content fullscreen="true" scrollY="true">
     <div class="loader-content">
       <ild-loader></ild-loader>
     </div>
