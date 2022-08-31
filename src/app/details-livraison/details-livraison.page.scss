@@ -1,0 +1,33 @@
+.header-content {
+    display: flex;
+}
+
+.cmd-card {
+    border: 1px solid gray;
+    padding: 1%;
+    margin: 2% 1%;
+    border-radius: 2%;
+}
+
+.qr-btn {
+    position: relative;
+    left: 125px;
+    top: 10px;
+    transform: rotate3d(1,0,0,0deg);
+    transition: all ease 0.25s;
+    cursor: pointer;
+}
+
+.qr-btn img {
+    transition: all ease 0.25s;
+    transform: scale(1);
+}
+
+.qr-btn img:hover {
+    transform: scale(1.025);
+}
+
+ion-modal {
+    ion-content {
+    }
+}

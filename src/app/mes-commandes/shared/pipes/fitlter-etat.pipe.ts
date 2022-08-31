@@ -16,7 +16,7 @@ export class FitlterEtatPipe implements PipeTransform {
     }
 
     return value.filter((commande : Commande) => {
-      if (commande.etat == etat) {
+      if (commande.etat == etat) {        
         return commande
       }
     });

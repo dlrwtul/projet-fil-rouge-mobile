@@ -1,0 +1,92 @@
+.header-content {
+    display: flex;
+}
+
+.commande-info {
+    width: 100vw;
+    height: 28vh;
+}
+
+ion-item-divider {
+    --background : white;
+}
+
+.produit-list {
+    ion-label {
+        font-size: small;
+    }
+}
+
+.nom-label {
+    width: 40vw;
+}
+
+.min-card {
+    height: 22vh;
+    display: flex;
+    background-color: whitesmoke;
+    border: 2px solid gainsboro;
+    margin-bottom: 2%;
+    border-radius: 7.5%;
+}
+
+.mini-card-left {
+    height: 100%;
+    width: 30vw;
+    padding: 2%;
+    img {
+        border-radius: 15%;
+    }
+}
+
+.mini-card-right {
+    height: 100%;
+    width: 70vw;
+    padding: 2%;
+    ion-list {
+        ion-item {
+            --height : 15px;
+            --min-height : 8px;
+            font-size: xx-small;
+            ion-label {
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.list-container {
+    padding: 0 2%;
+}
+
+.info {
+    box-shadow: -2px -2px 3px 1px rgba(226, 225, 225, 0.75);
+    width: 100%;
+    height: 100%;
+    border-radius: 6%;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    ion-list {
+        background-color: whitesmoke;
+        ion-item {
+            width: 100%;
+            --min-height: 30px ;
+            --background : whitesmoke;
+            font-size: small;
+            ion-label {
+                color : black;
+            }
+        }
+    }
+}
+
+ion-content::-webkit-scrollbar {
+	display: none;
+}
+
+ion-text {
+    font-size: small;
+    font-weight: lighter;
+}

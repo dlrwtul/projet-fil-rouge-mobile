@@ -3,6 +3,7 @@ import { CommandeProduit } from "./commande-produit"
 import { Quartier } from "./quartier";
 import { Ticket } from "./ticket";
 import { Zone } from "./zone";
+import { User } from '../../connexion/shared/models/user';
 
 export interface Commande {
     id?: number;
@@ -20,4 +21,5 @@ export interface Commande {
     commandeProduits?: Array<CommandeProduit|CommandeBoissonTaille>;
     etat?: string,
     ticket? : Ticket 
+    client ? : User
 }

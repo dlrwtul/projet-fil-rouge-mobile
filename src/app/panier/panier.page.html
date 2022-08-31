@@ -1,9 +1,58 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>panier</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header text="Panier"></app-header>>
 
-<ion-content>
-
+<ion-content fullscreen>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="commander()" size="medium" color="dark">
+      <ion-icon name="checkmark-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="choisir-zone">
+    <ion-chip [ngClass]="{'checked': myForm.invalid}" class="filter-val">Sur Place</ion-chip>
+    <ion-toggle color="dark" disabled="true" [checked]="myForm.valid"></ion-toggle>
+    <ion-chip [ngClass]="{'checked': myForm.valid}" (click)="setOpen(true)" class="filter-val" id="open-modal">A Domicile</ion-chip>
+  </div>
+  <ion-modal 
+    trigger="open-modal"
+    [isOpen]="isModalOpen"
+    [initialBreakpoint]="0.5"
+    [breakpoints]="[0, 0.25, 0.5, 0.75]"
+    handleBehavior="cycle"
+  >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Choisir adresse</ion-title>
+          <ion-buttons slot="end">
+            <ion-button size="small" (click)="setOpen(false)">Fermer</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-list>
+          <form action="">
+            <ion-item>
+              <ion-badge>+221</ion-badge>
+              <ion-label position="floating">Telephone</ion-label>
+              <ion-input placeholder="000000000"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Adresse</ion-label>
+              <ion-input placeholder="Keur Massar"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Choisir quartier</ion-label>
+              <ion-select placeholder="quartier">
+                <ng-container *ngFor="let quartier of quartiers$|async">
+                  <ion-select-option size="small" [value]="stringify(quartier)">{{quartier.zone.libelle + " " + quartier.libelle + " " + quartier.zone.montantLivraison + " FCFA"}}</ion-select-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </form>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <ng-container *ngFor="let commandeElement of (commande$|async).commandeProduits">
+    <app-ligne-produit [commandeElement]="commandeElement"></app-ligne-produit>
+  </ng-container>
 </ion-content>

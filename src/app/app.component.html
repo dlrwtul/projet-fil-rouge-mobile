@@ -9,12 +9,14 @@
       <ion-list class="nav-list">
         <ion-menu-toggle>
           <div>
-            <ion-item routerLink="/catalogue"><ion-icon size="small" class="ion-margin-end" name="list-outline"></ion-icon>Catalogue</ion-item>
-            <ion-item *ngIf="isConnected" routerLink="/mes-commandes"><ion-icon size="small" class="ion-margin-end" name="pricetags-outline"></ion-icon>Mes Commandes</ion-item>
-            <ion-item routerLink="/panier"><ion-icon size="small" class="ion-margin-end" name="basket-outline"></ion-icon>Panier</ion-item>
+            <ion-item *ngIf="!isLivreur" routerLink="/catalogue"><ion-icon size="small" class="ion-margin-end" name="fast-food-outline"></ion-icon>Catalogue</ion-item>
+            <ion-item *ngIf="isClient" routerLink="/mes-commandes"><ion-icon size="small" class="ion-margin-end" name="list-outline"></ion-icon>Mes Commandes</ion-item>
+            <ion-item *ngIf="!isLivreur" routerLink="/panier"><ion-icon size="small" class="ion-margin-end" name="cart-outline"></ion-icon>Panier</ion-item>
+            <ion-item *ngIf="isLivreur" routerLink="/mes-livraisons"><img class="ion-margin-end" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAABpElEQVQ4jc3TzYvNURgH8M/lRpKJGDYWdzFZmGQx5bKymDFFLMhL3rKzEJmNf8DSQtmNDdPQLG2mvGTDxkt5y0IhiUQRKS+ZaK7Fc27OHL87i5uFb53Oc875nu95Xs5TEziO1WZiFA91iXtoFeNwN0JzuvXgXwvORR96y4NamofRKM4u40223optyW5iLT5haX6pLgpysBC7UIjBbbwTUTU7uV4X1R0o9u9XcD+mAbuxEG9LUlUOW3jSyYOEk3iAi1UeThd7EyI3Z7O9FziVrb+neQg7cCkX6BUht8cKnBHhTIlczriASX/+69XSw7EkAv34htM4kOzluFsIrkrzD/TogCP+7pYWPmNBITYl8tiPPdiORblYI71WJXizeHgUm0VOf2W8V+hrV3kxbqWXSyzJ7EPiIzdwQnTMS9zBT+ysZeSB5OVKUb0h0Q01XElC6zAiKtvEfnzBe8zH13omuEv05wQ+YAuWYV7h8WuswXVcww2cwyCe58QNKeSj2IRHOF+RgjY24nHiHkt315ekfXgmKjsm2qsTejCeQn6KvbNw/yP8Bj4iYhRw1KU0AAAAAElFTkSuQmCC">Mes Livraisons</ion-item>
+            <ion-item *ngIf="isLivreur" routerLink="/carte"><ion-icon size="small" class="ion-margin-end" name="map-outline"></ion-icon>Carte</ion-item>
           </div>
           <div>
-            <ion-item *ngIf="!isConnected" routerLink="/connexion"><ion-icon class="ion-margin-end" name="person-circle-outline"></ion-icon>Connexion</ion-item>
+            <ion-item *ngIf="!isConnected" routerLink="/connexion"><ion-icon class="ion-margin-end" name="log-in-outline"></ion-icon>Connexion</ion-item>
           </div>
         </ion-menu-toggle>
       </ion-list>
@@ -22,30 +24,47 @@
     </ion-content>
     <ion-footer class="ion-no-border">
       <ion-toolbar>
-        <ion-menu-toggle>
-          <ion-item *ngIf="isConnected" (click)="deconnect()"><img class="ion-margin-end" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAABmJLR0QA/wD/AP+gvaeTAAAAyElEQVQokZXSPU5CQQAE4O8Zo60P8CcYoOQExNYKWi5A9AAWtia0GBMOoEfBysMoP9LIESj2PVxXhDjVJjuT2Z2ZzG+0cI0zzPGGaUzIonMFD/jABEvU0cUFnvAlETwj3+IMVbyk9+MdghInaMBB8Yf31DrBEe6Kp4NbtPe4QAcjZIeo4TMh1DHYIrxCH27+4fSoSLyJ+z2CYwz9rMhYiH0XNumVyIUe/hLWRD3FdrmwiBlescAlejgVFrFKRSUawvbOfW9vFhPWMa0dZKxP7XQAAAAASUVORK5CYII=">Deconnexion</ion-item>
-        </ion-menu-toggle>
+        <ion-list>
+          <ion-menu-toggle>
+            <ion-item class="ion-no-border" *ngIf="isConnected" (click)="deconnect()">
+              <ion-icon class="ion-margin-end" name="log-out-outline"></ion-icon>
+              Deconnexion
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
       </ion-toolbar>
     </ion-footer>
   </ion-menu>
   <ion-router-outlet id="main">
     <ion-tabs >
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="catalogue">
-          <ion-icon name="list-outline"></ion-icon>
+        <ion-tab-button *ngIf="!isLivreur" tab="catalogue">
+          <ion-icon name="fast-food-outline"></ion-icon>
         </ion-tab-button>
     
-        <ion-tab-button *ngIf="isConnected" tab="mes-commandes">
-          <ion-icon name="pricetags-outline"></ion-icon>
+        <ion-tab-button *ngIf="isClient" tab="mes-commandes">
+          <ion-icon name="list-outline"></ion-icon>
         </ion-tab-button>
 
+        <ion-tab-button *ngIf="isLivreur" tab="mes-livraisons">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAABpElEQVQ4jc3TzYvNURgH8M/lRpKJGDYWdzFZmGQx5bKymDFFLMhL3rKzEJmNf8DSQtmNDdPQLG2mvGTDxkt5y0IhiUQRKS+ZaK7Fc27OHL87i5uFb53Oc875nu95Xs5TEziO1WZiFA91iXtoFeNwN0JzuvXgXwvORR96y4NamofRKM4u40223optyW5iLT5haX6pLgpysBC7UIjBbbwTUTU7uV4X1R0o9u9XcD+mAbuxEG9LUlUOW3jSyYOEk3iAi1UeThd7EyI3Z7O9FziVrb+neQg7cCkX6BUht8cKnBHhTIlczriASX/+69XSw7EkAv34htM4kOzluFsIrkrzD/TogCP+7pYWPmNBITYl8tiPPdiORblYI71WJXizeHgUm0VOf2W8V+hrV3kxbqWXSyzJ7EPiIzdwQnTMS9zBT+ysZeSB5OVKUb0h0Q01XElC6zAiKtvEfnzBe8zH13omuEv05wQ+YAuWYV7h8WuswXVcww2cwyCe58QNKeSj2IRHOF+RgjY24nHiHkt315ekfXgmKjsm2qsTejCeQn6KvbNw/yP8Bj4iYhRw1KU0AAAAAElFTkSuQmCC">
+          <ion-badge color="warning">70</ion-badge>
+        </ion-tab-button>
+    
+        <ion-tab-button *ngIf="isLivreur" tab="carte">
+          <ion-icon name="map-outline"></ion-icon>
+        </ion-tab-button>
         <ion-tab-button *ngIf="!isConnected" tab="connexion">
           <ion-icon name="person-circle-outline"></ion-icon>
         </ion-tab-button>
 
-        <ion-tab-button tab="panier">
-          <ion-icon name="basket-outline"></ion-icon>
-          <ion-badge color="warning">70</ion-badge>
+        <ion-tab-button  *ngIf="!isLivreur" tab="panier">
+          <ion-icon name="cart-outline"></ion-icon>
+          <ion-badge color="warning">{{(commande$|async).commandeProduits.length}}</ion-badge>
+        </ion-tab-button>
+
+        <ion-tab-button *ngIf="isClient" tab="scan-qr">
+          <ion-icon name="qr-code-outline"></ion-icon>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>

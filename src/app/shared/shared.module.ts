@@ -6,20 +6,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoaderComponent } from './loader/loader.component';
+import { CompteurComponent } from './compteur/compteur.component';
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     LoaderComponent,
-    HeaderComponent
+    HeaderComponent,
+    CompteurComponent
   ],
   imports: [
-  CommonModule,
+CommonModule,
     IonicModule,
     RouterModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    
   ],
   exports: [
     RouterModule,
@@ -27,7 +30,8 @@ import { HeaderComponent } from './header/header.component';
     ReactiveFormsModule,
     FormsModule,
     LoaderComponent,
-    HeaderComponent
+    HeaderComponent,
+    CompteurComponent
   ]
 })
 export class SharedModule { }

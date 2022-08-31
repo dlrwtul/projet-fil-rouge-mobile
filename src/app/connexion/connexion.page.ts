@@ -39,8 +39,21 @@ export class ConnexionPage implements OnInit {
     this.authServ.$connexion(this.user).subscribe({
       next : (value) => {
         this.tokenServ.setToken(value.token)
+        this.tokenServ.setUser(this.user)
         this.presentToast("Connexion Reussie")
-        this.router.navigate(["/mes-commandes"])
+
+        this.authServ.isClient().then(bool => {
+          if (bool) {
+            this.router.navigate(["/mes-commandes"])
+          }
+        })
+
+        this.authServ.isLivreur().then(bool => {
+          if (bool) {
+            this.router.navigate(["/mes-livraisons"])
+          }
+        })
+        
         this.myForm.reset()
       },
       error : (err) => {

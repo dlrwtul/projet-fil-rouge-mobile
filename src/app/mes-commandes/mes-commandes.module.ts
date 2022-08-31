@@ -9,7 +9,7 @@ import { MesCommandesPageRoutingModule } from './mes-commandes-routing.module';
 import { MesCommandesPage } from './mes-commandes.page';
 import { SharedModule } from '../shared/shared.module';
 import { FitlterDatePipe } from './shared/pipes/fitlter-date.pipe';
-import { FitlterEtatPipe } from './shared/pipes/fitlter-num.pipe';
+import { FitlterEtatPipe } from './shared/pipes/fitlter-etat.pipe';
 
 @NgModule({
   imports: [

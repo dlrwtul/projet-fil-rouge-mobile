@@ -1,0 +1,28 @@
+.comp-card {
+    display: inline-block;
+    white-space: normal;
+    width: 70vw;
+    background-color: rgb(242, 247, 251);
+    border-radius: 5%;
+    margin: 0 2%;
+    img{
+        border-radius: 10%;
+    }
+    ion-text {
+        font-size: small;
+    }
+
+    ion-chip {
+        font-size: small;
+        font-weight: 600;
+    }
+}
+
+.compteur-container {
+    width: 100%;
+    padding : 5% 15%;
+}
+
+.comp-btn {
+    font-size: small;
+}

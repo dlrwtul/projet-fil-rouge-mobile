@@ -1,0 +1,5 @@
+<div class="counter__section">
+  <ion-button color="dark" class="compteur-btn" (click)="decrement()"><ion-icon name="remove-outline"></ion-icon></ion-button>
+  <input #inputCompt (keyup)="compteurVal(inputCompt)" class="compteur-input" [value]="quantiteVal">
+  <ion-button color="dark" class="compteur-btn" (click)="increment()"><ion-icon name="add-outline"></ion-icon></ion-button>
+</div>

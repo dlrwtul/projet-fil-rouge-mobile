@@ -8,10 +8,10 @@
         </ion-col>
         <ion-col>{{text}}</ion-col>
         <ion-col class="col-panier">
-          <div class="panier">
+          <div (click)="goTo()" class="panier">
             <ion-icon name="basket-outline"></ion-icon>
           </div>
-          <span class="count" >70</span>
+          <span class="count" >{{(commande$|async).commandeProduits.length}}</span>
         </ion-col>
       </ion-row>
   </ion-toolbar>

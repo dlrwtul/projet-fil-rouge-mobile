@@ -47,14 +47,24 @@ export class AuthService {
     return bool
   }
 
-  isLivreur() {
-    this.tokenServ.getToken().then(value => {
+  async isLivreur() {
+    return await this.tokenServ.getToken().then(value => {
+      if (value == null) {
+        return false
+      }
         let decoded : any = jwt_decode(value)  
-        if (decoded.roles[0] == 'ROLE_CLIENT') {
-          this.isLvr = true
-      }      
+        return decoded.roles[0] == 'ROLE_LIVREUR' ? true : false   
     })    
-    return this.isLvr
+  }
+
+  async isClient() {
+    return await this.tokenServ.getToken().then(value => {
+      if (value == null) {
+        return false
+      }
+        let decoded : any = jwt_decode(value)  
+        return decoded.roles[0] == 'ROLE_CLIENT' ? true : false   
+    })    
   }
 
   $connexion = (user : User):Observable<any> => {

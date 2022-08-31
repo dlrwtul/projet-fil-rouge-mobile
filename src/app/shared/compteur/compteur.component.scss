@@ -1,0 +1,16 @@
+.compteur-btn {
+    transform: scale(0.6);    
+}
+
+.counter__section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.compteur-input {
+    width: 25px;
+    border: 1px solid;
+    border-radius: 3px;
+    text-align: center;
+}

@@ -1,0 +1,31 @@
+.loader-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.livraison-item {
+    width: 100vw;
+    ion-label{
+        width: 33%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+ion-content {
+    padding: 0 2%;
+}
+
+ion-item-divider {
+    --background : white ;  
+    min-height: 12.5px;
+}
+
+.filter-val.checked {
+    --background: black;
+    --color : white ;
+    font-weight: 600;
+}

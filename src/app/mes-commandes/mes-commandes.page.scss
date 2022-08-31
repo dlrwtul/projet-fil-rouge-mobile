@@ -8,10 +8,26 @@ ion-item-divider {
 
 .annuler {
     --background : red;
+    font-size: small;
 }
 
 .details {
     --background : gray;
+    font-size: small;
+}
+
+.list-options {
+    border-radius: 5px;
+    padding: 0 2%;
+    --background : rgb(240, 240, 240); 
+    ion-item {
+        --background : rgb(240, 240, 240); 
+        ion-label {
+            --background : rgb(240, 240, 240); 
+            font-size: small;
+            color: rgb(60, 60, 60);
+        }
+    }
 }
 
 .segment {
@@ -25,7 +41,7 @@ ion-item-divider {
 .md .segment {
     ion-segment {
         ion-label {
-            font-size: small;
+            font-size: x-small;
             text-align: center;
             font-variant-caps: petite-caps;
         }
@@ -36,6 +52,13 @@ ion-item-divider {
     display: flex;
     align-items: center;
     width: 50px;
+    font-size: small;
+}
+
+.commande-item {
+    ion-label {
+        font-size: small;
+    }
 }
 
 .affiche-date {

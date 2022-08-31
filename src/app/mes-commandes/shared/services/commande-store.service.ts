@@ -30,10 +30,10 @@ export class CommandeStoreService {
 
   }
 
-  $commandesClient = (etat : string):Observable<any> => {
+  $commandesClient = ():Observable<any> => {
     return from(this.setToken()).pipe(
       switchMap((headers) => {
-        return this.http.get<any>(`${apiUrl}clients/0/commandes?etat=${etat}`,
+        return this.http.get<any>(`${apiUrl}clients/0/commandes`,
           {
             headers: headers
           }
@@ -46,16 +46,29 @@ export class CommandeStoreService {
     )
   }
 
-
-  $annulerCommande = (id : number):Observable<Commande> => {
-    return this.http.put<Commande>(`${apiUrl}commandes/${id}/annule`,{})
+  $oneCommandesClient = (id : number):Observable<Commande> => {
+    return from(this.setToken()).pipe(
+      switchMap((headers) => {
+        return this.http.get<Commande>(`${apiUrl}commandes/${id}`,
+          {
+            headers: headers
+          }
+        )
+      })
+    )
   }
 
-  async timeout() {
-    await setTimeout(() => {
-      
-    }, 1000);
-  }
 
+  $changerEtatCommande = (id : number,etat :string):Observable<any> => {
+    return from(this.setToken()).pipe(
+      switchMap((headers) => {        
+        return this.http.put<Commande>(`${apiUrl}commandes/${id}/${etat}`,{},
+          {
+            headers: headers
+          }
+        )
+      })
+    )
+  }
 
 }

@@ -40,6 +40,37 @@ const routes: Routes = [
   {
     path: 'details-commande',
     loadChildren: () => import('./details-commande/details-commande.module').then( m => m.DetailsCommandePageModule)
+    ,
+    canActivate : [AuthGuard],
+    data: {
+      role: "ROLE_CLIENT"
+    }
+  },
+  {
+    path: 'mes-livraisons',
+    loadChildren: () => import('./mes-livraisons/mes-livraisons.module').then( m => m.MesLivraisonsPageModule)
+    ,
+    canActivate : [AuthGuard],
+    data: {
+      role: "ROLE_LIVREUR"
+    }
+  },
+  {
+    path: 'details-livraison',
+    loadChildren: () => import('./details-livraison/details-livraison.module').then( m => m.DetailsLivraisonPageModule)
+    ,
+    canActivate : [AuthGuard],
+    data: {
+      role: "ROLE_LIVREUR"
+    }
+  },
+  {
+    path: 'carte',
+    loadChildren: () => import('./carte/carte.module').then( m => m.CartePageModule)
+  },
+  {
+    path: 'scan-qr',
+    loadChildren: () => import('./scan-qr/scan-qr.module').then( m => m.ScanQrPageModule)
   }
 ];
 @NgModule({

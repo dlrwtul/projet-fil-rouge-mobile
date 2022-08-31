@@ -1,9 +1,12 @@
+import { User } from 'src/app/connexion/shared/models/user';
+import { Livreur } from 'src/app/mes-livraisons/shared/models/livreur';
 import { Commande } from 'src/app/shared/models/commande';
-import { Livreur } from '../../livraison/shared/models/livreur';
 
 export interface Livraison {
     id?: number
     livreur?: Livreur,
     commandes?: Commande[],
-    etat? : string
+    etat? : string,
+    client?: User,
+    montantTotal?: number
 }

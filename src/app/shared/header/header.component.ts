@@ -1,4 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { Commande } from '../models/commande';
+import { PanierService } from '../services/panier-service.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +11,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  commande$ : Observable<Commande>
   @Input() text : string
-  constructor() { }
+  constructor(private panierServ : PanierService,private navCtrl : NavController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.commande$ = this.panierServ.getCommande()
+  }
+
+  goTo() {
+    this.navCtrl.navigateRoot('/panier')
+  }
 
 }

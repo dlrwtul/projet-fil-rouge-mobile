@@ -1,10 +1,19 @@
 <ion-card>
-  <ion-card-header class="ion-justify-content-between">
-    <span class="prixs">
-      <span class="prix">{{produit.prix}}</span> FCFA
+  <ion-card-header class="ion-justify-content-between ion-align-items-center">
+    <ion-row>
+      <ion-col>
+        <ion-chip class="" color="tertiary">{{produit.prix}} FCFA</ion-chip>
+      </ion-col>
+      <ion-col>
+        <app-compteur (quantite)="getVal($event)" [quantiteVal]="quantiteVal"></app-compteur>
+      </ion-col>
+    </ion-row>
+    <!-- <span class="prixs">
+      <ion-chip class="ion-margin-bottom" color="tertiary">{{produit.prix}} FCFA</ion-chip>
     </span>
     <span>
-    </span>
+      <app-compteur [quantiteVal]="1"></app-compteur>
+    </span> -->
   </ion-card-header>
   <ion-card-header>
     <a routerLink="/details-produit/{{produit.id}}">
@@ -15,7 +24,7 @@
   <ion-card-content>
     <ion-card-subtitle>{{produit.nom}}</ion-card-subtitle>
     <ion-card-subtitle>
-      <ion-button (click)="presentToast()" size="small" color="dark" name="add-outline" tooltip="Ajouter"><ion-icon name="add-outline"></ion-icon></ion-button>
+      <ion-button (click)="addProduct()" size="small" color="success" name="add-outline" tooltip="Ajouter"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAABH0lEQVQ4jcXUvyuFURzH8de9lzJJsiH5EZtFiUzEoKzXYjHJbPKPKFJGA9ks7mBSyn8g3RjIhmRQ4hqe8+hc3UvP9ZR3fTunz/Ocz/me7/nBPzGMsbzMenCPR/TnYXiIWogKCn8xWw1G+9gL/bVWzfrwgDt0oxM3eMFIVrMiTvGBxUifwzvOUGo0sE1Sk/WQQcooZlHFeIiUKmawi8tIf8Z2urRaTtGb7tg1OrD0SymacYxXDKbCTphhqEXDL4qhPQntQsbxZUw3+tCFNxxlNKzhIBbSDJ9wgXm0ZzStoxj1K5KjM/kXw5gpyRK2MNEgSGr249GJL3oJV6Kt/0YhTLoRaWXc4jz+KWYAK+pvTcpmA60meY2WmySRmaa7nBuf+rRKRh0BbEsAAAAASUVORK5CYII="></ion-button>
     </ion-card-subtitle>
   </ion-card-content>
 </ion-card>

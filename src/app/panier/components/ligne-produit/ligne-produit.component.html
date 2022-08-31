@@ -1,0 +1,19 @@
+<ion-card class="ion-no-padding">
+  <ion-row>
+    <ion-col size="5">
+      <img class="img" src="data:image/png;base64,{{produit.image}}"/>
+    </ion-col>
+    <ion-col>
+        <ion-text color="dark">
+          {{produit.nom}}
+        </ion-text><br><br>
+        <ion-text color="dark">
+          {{commandeElement.quantite}} x {{commandeElement.prix}} FCFA
+        </ion-text><br><br>
+        <ion-chip size="small" color="dark">
+          {{commandeElement.prix*commandeElement.quantite}} FCFA
+        </ion-chip>
+        <app-compteur (quantite)="getVal($event)" [quantiteVal]="commandeElement.quantite "></app-compteur>
+    </ion-col>
+  </ion-row>
+</ion-card>

@@ -14,18 +14,86 @@
         <ion-badge color="warning" slot="end">{{(detailsProduit|async).produit.prix}} FCFA</ion-badge>
         <ion-label>{{(detailsProduit|async).produit.nom}}</ion-label>
       </ion-item>
-      <img class="img" src="data:image/png;base64,{{(detailsProduit|async).produit.image}}">
+      <img class="img" alt="" src="data:image/png;base64,{{(detailsProduit|async).produit.image}}">
       <div class="ion-margin">
         <h6>Description</h6>
         <p class="description">
           {{(detailsProduit|async).produit.description}}
         </p>
       </div>
-      <div class="counter__section">
-        <ion-button color="dark" class="compteur-btn" (click)="decrement()">-</ion-button>
-        <input #inputCompt (keyup)="compteurVal(inputCompt)" class="compteur-input" [value]="quantiteVal">
-        <ion-button color="dark" class="compteur-btn" (click)="increment()">+</ion-button>
+      <div class="compteur-container">
+        <app-compteur (quantite)="getVal($event)" [quantiteVal]="quantiteVal"></app-compteur>
       </div>
+    </div>
+    <ion-item-divider>
+      Nos Frites
+    </ion-item-divider>
+      <div class="complement-container" scrollX="true" scrollY="false">
+        <ng-container *ngFor="let frite of (detailsProduit|async).portionFrites">
+          <app-card-comp [frite]="frite"></app-card-comp>
+          <!-- <div class="comp-card">
+            <ion-row>
+              <ion-col>
+                <img src="data:image/png;base64,{{frite.image}}" alt="">
+              </ion-col>
+              <ion-col>
+                <ion-chip color="tertiary">{{frite.prix}} FCFA</ion-chip>
+                <ion-text>{{frite.nom}}</ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="8">
+                <app-compteur (emiter)="commandePortionFrites.quantite = $event" [quantiteVal]="1"></app-compteur>
+              </ion-col>
+              <ion-col size="4">
+                <ion-button (click)="addPortion(frite)" color="success" class="comp-btn ion-margin-start" size="small"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAABH0lEQVQ4jcXUvyuFURzH8de9lzJJsiH5EZtFiUzEoKzXYjHJbPKPKFJGA9ks7mBSyn8g3RjIhmRQ4hqe8+hc3UvP9ZR3fTunz/Ocz/me7/nBPzGMsbzMenCPR/TnYXiIWogKCn8xWw1G+9gL/bVWzfrwgDt0oxM3eMFIVrMiTvGBxUifwzvOUGo0sE1Sk/WQQcooZlHFeIiUKmawi8tIf8Z2urRaTtGb7tg1OrD0SymacYxXDKbCTphhqEXDL4qhPQntQsbxZUw3+tCFNxxlNKzhIBbSDJ9wgXm0ZzStoxj1K5KjM/kXw5gpyRK2MNEgSGr249GJL3oJV6Kt/0YhTLoRaWXc4jz+KWYAK+pvTcpmA60meY2WmySRmaa7nBuf+rRKRh0BbEsAAAAASUVORK5CYII="></ion-button>
+              </ion-col>
+            </ion-row>
+            <div class="comp-card-header">
+              
+            </div>
+            <div class="comp-card-footer">
+              <div>
+    
+              </div>
+            </div>
+          </div> -->
+        </ng-container>
+      </div>
+    <ion-item-divider>
+      Nos Boissons
+    </ion-item-divider>
+    <div class="complement-container">
+      <ng-container *ngFor="let boissonTaille of (detailsProduit|async).boissonTailles">
+        <app-card-comp [boissonTaille]="boissonTaille"></app-card-comp>
+        <!-- <div class="comp-card">
+          <ion-row>
+            <ion-col>
+              <img src="./assets/img/{{boissonTaille.boisson.nom}}.jpg" alt="">
+            </ion-col>
+            <ion-col>
+              <ion-chip color="tertiary">{{boissonTaille.taille.prix}} FCFA</ion-chip>
+              <ion-text>{{boissonTaille?.taille?.libelle +" "+ boissonTaille?.boisson?.nom}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="8">
+              <app-compteur [quantiteVal]="1"></app-compteur>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button (click)="addBoissonTaille(boissonTaille)" color="success" class="comp-btn ion-margin-start" size="small"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAABH0lEQVQ4jcXUvyuFURzH8de9lzJJsiH5EZtFiUzEoKzXYjHJbPKPKFJGA9ks7mBSyn8g3RjIhmRQ4hqe8+hc3UvP9ZR3fTunz/Ocz/me7/nBPzGMsbzMenCPR/TnYXiIWogKCn8xWw1G+9gL/bVWzfrwgDt0oxM3eMFIVrMiTvGBxUifwzvOUGo0sE1Sk/WQQcooZlHFeIiUKmawi8tIf8Z2urRaTtGb7tg1OrD0SymacYxXDKbCTphhqEXDL4qhPQntQsbxZUw3+tCFNxxlNKzhIBbSDJ9wgXm0ZzStoxj1K5KjM/kXw5gpyRK2MNEgSGr249GJL3oJV6Kt/0YhTLoRaWXc4jz+KWYAK+pvTcpmA60meY2WmySRmaa7nBuf+rRKRh0BbEsAAAAASUVORK5CYII="></ion-button>
+            </ion-col>
+          </ion-row>
+          <div class="comp-card-header">
+            
+          </div>
+          <div class="comp-card-footer">
+            <div>
+  
+            </div>
+          </div>
+        </div> -->
+      </ng-container>
     </div>
   </ng-container>
   <ng-container *ngIf="(detailsProduit|async) == null">
@@ -35,7 +103,7 @@
   </ng-container>
 </ion-content>
 <ion-footer>
-  <ion-toolbar class="ion-justify-content-center ion-padding-horizontal">
-    <ion-button expand="block" horizontal="end" color="dark">Ajouter</ion-button>
+  <ion-toolbar class="ion-justify-content-center ion-padding-horizontal ion-no-border">
+    <ion-button (click)="addProduct()" expand="block" size="small" horizontal="end" color="dark">Ajouter</ion-button>
   </ion-toolbar>
 </ion-footer>

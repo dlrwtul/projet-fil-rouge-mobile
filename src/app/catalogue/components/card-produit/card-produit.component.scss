@@ -3,7 +3,12 @@ ion-card {
 }
 
 ion-card ion-card-header:first-child {
-    height: 10px;
+    padding: 0 !important;
+    height: max-content !important;
+    ion-row {
+        width: 100%;
+        height: max-content !important;
+    }
 }
 
 ion-card-header {
@@ -25,15 +30,9 @@ ion-card-content {
 }
 
 ion-card {
-    .prixs {
-        margin: 0 1%;
-        border: 2px solid gray;
-        border-radius: 5px;
-        padding: 0.5% 2%;
-        font-size: small;
-        color: gray;
+    ion-chip {
         font-weight: 600;
-        margin: 1%;
+        font-size: small;
     }
 }
 

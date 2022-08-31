@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { PanierPageRoutingModule } from './panier-routing.module';
 
 import { PanierPage } from './panier.page';
+import { SharedModule } from '../shared/shared.module';
+import { LigneProduitComponent } from './components/ligne-produit/ligne-produit.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PanierPageRoutingModule
+    PanierPageRoutingModule,
+    SharedModule
   ],
-  declarations: [PanierPage]
+  declarations: [PanierPage,LigneProduitComponent]
 })
 export class PanierPageModule {}

@@ -8,6 +8,7 @@ import { DetailsProduitPageRoutingModule } from './details-produit-routing.modul
 
 import { DetailsProduitPage } from './details-produit.page';
 import { SharedModule } from '../shared/shared.module';
+import { CardCompComponent } from './components/card-comp/card-comp.component';
 
 @NgModule({
   imports: [
@@ -15,8 +16,9 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     IonicModule,
     DetailsProduitPageRoutingModule,
-    SharedModule
+    SharedModule,
+    
   ],
-  declarations: [DetailsProduitPage]
+  declarations: [DetailsProduitPage,CardCompComponent]
 })
 export class DetailsProduitPageModule {}

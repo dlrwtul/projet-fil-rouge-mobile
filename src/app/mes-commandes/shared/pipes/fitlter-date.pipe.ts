@@ -14,16 +14,14 @@ export class FitlterDatePipe implements PipeTransform {
       return value;
     }
     let dateToFilter = new Date(date)
-    let filteredCommandes: Commande[] = [];
-    for (let commande of value) {
+    return value.filter((commande: Commande) => {
       if (commande.createdAt != undefined) {
         const commandeDate = new Date(commande.createdAt)
         if (commandeDate.toLocaleDateString() == dateToFilter.toLocaleDateString()) {
-          filteredCommandes.push(commande);
+          return commande ;
         }
       }
-    }
-    return filteredCommandes;
+    });
   }
 
 }

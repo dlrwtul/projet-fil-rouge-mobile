@@ -1,0 +1,12 @@
+.choisir-zone {
+    width: 100vw;
+    padding: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-val.checked {
+    --background: rgb(124, 124, 206);
+    --color : white ;
+    font-weight: 600;
+}

@@ -1,0 +1,58 @@
+<ng-container *ngIf="isFrite">
+  <div class="comp-card">
+    <ion-row>
+      <ion-col>
+        <img src="data:image/png;base64,{{frite.image}}" alt="">
+      </ion-col>
+      <ion-col>
+        <ion-chip color="tertiary">{{frite.prix}} FCFA</ion-chip>
+        <ion-text>{{frite.nom}}</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">
+        <app-compteur (quantite)="getVal($event)" [quantiteVal]="quantiteVal"></app-compteur>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button (click)="addPortion()" color="success" class="comp-btn ion-margin-start" size="small"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAABH0lEQVQ4jcXUvyuFURzH8de9lzJJsiH5EZtFiUzEoKzXYjHJbPKPKFJGA9ks7mBSyn8g3RjIhmRQ4hqe8+hc3UvP9ZR3fTunz/Ocz/me7/nBPzGMsbzMenCPR/TnYXiIWogKCn8xWw1G+9gL/bVWzfrwgDt0oxM3eMFIVrMiTvGBxUifwzvOUGo0sE1Sk/WQQcooZlHFeIiUKmawi8tIf8Z2urRaTtGb7tg1OrD0SymacYxXDKbCTphhqEXDL4qhPQntQsbxZUw3+tCFNxxlNKzhIBbSDJ9wgXm0ZzStoxj1K5KjM/kXw5gpyRK2MNEgSGr249GJL3oJV6Kt/0YhTLoRaWXc4jz+KWYAK+pvTcpmA60meY2WmySRmaa7nBuf+rRKRh0BbEsAAAAASUVORK5CYII="></ion-button>
+      </ion-col>
+    </ion-row>
+    <div class="comp-card-header">
+      
+    </div>
+    <div class="comp-card-footer">
+      <div>
+  
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="!isFrite">
+  <div class="comp-card">
+    <ion-row>
+      <ion-col>
+        <img src="./assets/img/{{boissonTaille.boisson.nom}}.jpg" alt="">
+      </ion-col>
+      <ion-col>
+        <ion-chip color="tertiary">{{boissonTaille.taille.prix}} FCFA</ion-chip>
+        <ion-text>{{boissonTaille?.taille?.libelle +" "+ boissonTaille?.boisson?.nom}}</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">
+        <app-compteur  (quantite)="getVal($event)" [quantiteVal]="quantiteVal"></app-compteur>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button (click)="addBoissonTaille()" color="success" class="comp-btn ion-margin-start" size="small"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAABH0lEQVQ4jcXUvyuFURzH8de9lzJJsiH5EZtFiUzEoKzXYjHJbPKPKFJGA9ks7mBSyn8g3RjIhmRQ4hqe8+hc3UvP9ZR3fTunz/Ocz/me7/nBPzGMsbzMenCPR/TnYXiIWogKCn8xWw1G+9gL/bVWzfrwgDt0oxM3eMFIVrMiTvGBxUifwzvOUGo0sE1Sk/WQQcooZlHFeIiUKmawi8tIf8Z2urRaTtGb7tg1OrD0SymacYxXDKbCTphhqEXDL4qhPQntQsbxZUw3+tCFNxxlNKzhIBbSDJ9wgXm0ZzStoxj1K5KjM/kXw5gpyRK2MNEgSGr249GJL3oJV6Kt/0YhTLoRaWXc4jz+KWYAK+pvTcpmA60meY2WmySRmaa7nBuf+rRKRh0BbEsAAAAASUVORK5CYII="></ion-button>
+      </ion-col>
+    </ion-row>
+    <div class="comp-card-header">
+      
+    </div>
+    <div class="comp-card-footer">
+      <div>
+
+      </div>
+    </div>
+  </div>
+</ng-container>

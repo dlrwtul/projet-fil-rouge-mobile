@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Storage } from '@capacitor/storage';
 import { Commande } from '../models/commande';
 import { Quartier } from '../models/quartier';
 import { Zone } from '../models/zone';
@@ -23,6 +24,7 @@ export class PanierService {
     commandePortionFrites: []
   }
   private commandePanier : BehaviorSubject<Commande> = new BehaviorSubject(this.panier);
+
   constructor() { }
 
   setZone(zone : Zone) {
@@ -93,9 +95,7 @@ export class PanierService {
     }
   }
 
-  addCommandeBurger(commandeBurger:CommandeProduit) {
-    console.log(this.panier);
-    
+  addCommandeBurger(commandeBurger:CommandeProduit) {    
     let isIn =false
 
     this.commandePanier.value.commandeBurgers?.map(data => {
@@ -225,20 +225,26 @@ export class PanierService {
     )
   }
 
-  viderPanier() {    
-    return this.commandePanier?.next(this.panier)
+  viderPanier() {
+    return this.commandePanier.next(this.panier)
   }
 
-  savePanier(){
-    window.sessionStorage.removeItem(PANIER_KEY)
-    window.sessionStorage.setItem(PANIER_KEY,JSON.stringify(this.commandePanier.value))
+  async savePanier(){
+    await Storage.set({ key: PANIER_KEY, value: JSON.stringify(this.commandePanier.value) })
+  }
+
+  async getPanier() {
+    let { value } = await Storage.get({ key: PANIER_KEY });    
+    return value
   }
 
   restorePanier(){
-    let data = window.sessionStorage.getItem(PANIER_KEY)
-    if (data != null) {
-      this.commandePanier = new BehaviorSubject(JSON.parse(data))  
-    }
+    this.getPanier().then(data => {
+      if (data != null) { 
+        console.log(JSON.parse(data)); 
+        return this.commandePanier.next(JSON.parse(data))
+      }
+    })
   }
 
 }
