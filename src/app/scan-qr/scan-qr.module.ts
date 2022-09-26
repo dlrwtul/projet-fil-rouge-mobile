@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { ScanQrPageRoutingModule } from './scan-qr-routing.module';
 
@@ -13,7 +13,8 @@ import { ScanQrPage } from './scan-qr.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ScanQrPageRoutingModule
+    ScanQrPageRoutingModule,
+    ZXingScannerModule
   ],
   declarations: [ScanQrPage]
 })

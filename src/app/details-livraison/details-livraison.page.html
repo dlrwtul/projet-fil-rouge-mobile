@@ -33,12 +33,12 @@
       <div class="cmd-card">
         <div class="part-1">
           <ion-col>
-            <ion-chip *ngIf="commande.etat == 'en cours'" color="warning">{{commande.numero}}</ion-chip>
-            <ion-chip *ngIf="commande.etat == 'valide'" color="success">{{commande.numero}}</ion-chip>
-            <ion-chip *ngIf="commande.etat == 'annule'" color="danger">{{commande.numero}}</ion-chip>
+            <ion-chip *ngIf="commande.etat == enCourLivraison" color="warning">{{commande.numero}}</ion-chip>
+            <ion-chip *ngIf="commande.etat == valide" color="success">{{commande.numero}}</ion-chip>
+            <ion-chip *ngIf="commande.etat == annule" color="danger">{{commande.numero}}</ion-chip>
           </ion-col>
           <ion-col>
-            <span button (click)="createQRCode(commande)" id="{{commande.id}}" class="qr-btn">
+            <span *ngIf="commande.etat == enCourLivraison" button (click)="createQRCode(commande)" id="{{commande.id}}" class="qr-btn">
               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAABmJLR0QA/wD/AP+gvaeTAAADpklEQVRYhdXZTYgcRRQH8N/MziabDxLWFfWim0RNIJ68mIsGInjQiIIG0YOiEUXB3D0pqxchNyEHzSF+QFDwoijx4xDQoJKD4MGPmERdvZglcY0xHzvZDw9Vw/T2dPXMZnp3yR+K7nmv+tV/uqree/W6po1NeAq3YMB8NPEKflEttuAlDObkMziOA/gtq3gElzBX0l6omKRos2zMi9gFNdyMH7AC7+Aj/JszOIOvMF0x0UHcqXMG1+EBPIEpbIVXI/sDFZOoAm8L3MbqwpqET5aPTxIfx+vmOhrxx6VlIlOGi/HaaJR2Yy2uS+j+w0TJs6uEtd3MyK7HmkT/iWizEGVE12Ac1yT0c9iJQwW6Gn7EP7g9yu4TprKWsHcGozi/UKLDkeRl/JnTjWC94DGKMIAN5r+hTZHk2UgqixujzeEU0br21EwlBh2PhLJtf6JvL9hfYG880bfFrdnAGL7G4T4GXywcFoLC5w0hLFYdGqvCZewjTP1VgW7uibDIX8vJthf0ewh3xPuyF7C9wN5IDzySuBazypOG3Zn+kwX6Uxn97i62ZssIl73R04Lvuymhn8L7Bbaej4PC9xn9QSEArEzYG9fpthYF54Q308tyWjCums20FETr+BZ/59q+hRhZlGnKoSaE2+Gc/O6qBhjCz9pHgp0FfT7QuXu7/fkNsd9PCyFTNvWtgcuQ13+j+uPKsqH1RvPtV2EWC7GYa3RMSPP25uR/Cf41758ntf3vkmEgDnq2KoOL5Z5qsVVmv9vU3ytk30Vo4j29HwqH8KhQPyjCH/i0R1vzsNCkJItG1J/LyJ7uYms2jpk0mMKQMH2TeDOn2yGkdKtLns9jVbwe1XmaeFYICH3t+jN4MSfbq517trAaN8T7fIkmiy8L7D2sM3LNQ5Xu6Shuy8m6BYye0RBKf/fgDeGMcqUYjdfvtAke6cMeoYj2HD5r4GU8hmP4ok/DsE11YXQHXsfBhnYRNZV5j+JkTtbPGecZ4XyVRcoFtlzZirI1OilspBGhypHHHE5kfp8Q6pozCXsn4zPrY8vjtJCnFqKM6Hkhgei1SLZNiESpDXRI8AprE/pTuHAlRFtkkhW2HJrdu5hQXgFMoq698JPOdhnRChLTdeHrA9y/TGTK0OJ0rIaNQi1zJd7Fh4o/NhzRn58twiDu0pllrcODeFxIera2FLuEc9FSf77Z02XMC6Iry1Z/N+JJ3KpzkzWFjP24arFZ+CCWT/2mhQrjW/gd/gf+2fqtc2Y/RQAAAABJRU5ErkJggg==">
             </span>
             <ion-list>
@@ -74,6 +74,8 @@
         </div>
       </div>
       <ion-modal
+        #modal
+        (didDismiss)="changeEtatCommande()"
         class="modal"
         [trigger]="commande.id"
         [initialBreakpoint]="0.5"

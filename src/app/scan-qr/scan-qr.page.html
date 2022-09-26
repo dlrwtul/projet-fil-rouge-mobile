@@ -1,12 +1,13 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <div class="header-content">
-      <ion-back-button color="light" (click)="back()" defaultHref=""></ion-back-button>
-      <ion-title>Scan Qr code</ion-title>
-    </div>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content overflow="hidden" fullscreen="true">
+  <ion-fab class="ion-margin" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" (click)="changeState(false)">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab class="ion-margin" vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button color="dark" (click)="changeTorcheState(!isTorch)">
+      <ion-icon name="flashlight-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <zxing-scanner overflow="hidden" #scanner [previewFitMode]="'cover'" [autostart]="true" [torch]="isTorch" [autofocusEnabled]="true" (scanSuccess)="getSuccess($event)" [enable]="isEnabled"></zxing-scanner>
 </ion-content>

@@ -1,54 +1,73 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ContentChildren, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { TokenService } from '../connexion/shared/services/token.service';
 import { CommandeStoreService } from '../mes-commandes/shared/services/commande-store.service';
+import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-scan-qr',
   templateUrl: './scan-qr.page.html',
   styleUrls: ['./scan-qr.page.scss'],
 })
-export class ScanQrPage implements OnInit,OnDestroy {
-  
-  constructor(private location : Location,private tokenServ : TokenService,private commandeStoreServ : CommandeStoreService) { }
+
+export class ScanQrPage implements OnInit,AfterViewInit {
+
+  isTorch : boolean = false
+  isEnabled : boolean = true
+  @ViewChild('scanner') scanner: ZXingScannerComponent; 
+
+  constructor(private location : Location,private toastController : ToastController,private tokenServ : TokenService,private commandeStoreServ : CommandeStoreService) { }
+
+  async presentToast(message : string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position : 'top',
+    });
+    toast.present();
+  }
+
+  ngAfterViewInit(): void {
+    this.scanner.previewElemRef.nativeElement.style.width = '100vw'
+    this.scanner.previewElemRef.nativeElement.style.minHeight = '100vh'
+    this.scanner.previewFitMode = 'cover'
+  }
 
   ngOnInit() {
-    this.startScan().then(value =>{
-      let data : [string,number] = JSON.parse(value);
-      this.tokenServ.getUser().then(value =>{
-        if (data[0] == value.login) {
-          this.commandeStoreServ.$changerEtatCommande(data[1],'valide')
-          this.stopScan()
-        }
-      })
+  }
+
+  getSuccess(value : string) {
+    let data : [string,number] = JSON.parse(value);    
+    this.tokenServ.getUser().then(value =>{
+      if (data[0] == value.login) {
+        this.commandeStoreServ.$changerEtatCommande(data[1],'valide')
+        this.stopScan()
+        this.presentToast('Commande Validée')
+      } else {
+        this.presentToast('Commande Inconnue')
+      }
     })
   }
 
-  ngOnDestroy(): void {
-    this.stopScan()
+  changeTorcheState(bool : boolean) {
+    this.isTorch = bool
   }
 
-  startScan = async () => {
-    BarcodeScanner.hideBackground(); // make background of WebView transparent
-  
-    const result = await BarcodeScanner.startScan(); // start scanning and wait for a result
-  
-    if (result.hasContent) {
-      return result.content
+  changeState(bool : boolean) {
+    this.isEnabled = bool
+    if (this.isEnabled == false) {
+      this.back()
     }
-  };
+  }
 
-  stopScan() {
-    BarcodeScanner.showBackground();
-    BarcodeScanner.stopScan();
+  stopScan(): void {
+    this.isEnabled = false
+    this.back()
   }
 
   back() {
-    this.stopScan()
     this.location.back();
   }
-
-  
 
 }

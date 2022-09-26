@@ -49,6 +49,18 @@ export class LivraisonStoreService {
     )
   }
 
+  $livraison = (id : number):Observable<Livraison> => {
+    return from(this.setToken()).pipe(
+      switchMap((headers) => {
+        return this.http.get<Livraison>(`${apiUrl}livraisons/${id}`,
+          {
+            headers: headers
+          }
+        )
+      })
+    )
+  }
+
 
   changeEtatLivraison$ = (id : number,etat : string):Observable<Livraison> => {
     let livraison : Livraison = {

@@ -15,7 +15,7 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     IonicModule,
     CartePageRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [CartePage]
 })

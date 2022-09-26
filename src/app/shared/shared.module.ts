@@ -8,12 +8,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './loader/loader.component';
 import { CompteurComponent } from './compteur/compteur.component';
 import { HeaderComponent } from './header/header.component';
+import { TabsComponent } from '../tabs/tabs.component';
 
 @NgModule({
   declarations: [
     LoaderComponent,
     HeaderComponent,
-    CompteurComponent
+    CompteurComponent,
+    
   ],
   imports: [
 CommonModule,
