@@ -1,0 +1,32 @@
+<ion-tabs>
+  <ion-tab-bar *ngIf="!isScan" slot="bottom">
+    <ion-tab-button *ngIf="!isLivreur" tab="catalogue">
+      <ion-icon name="fast-food-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="isClient" tab="mes-commandes">
+      <ion-icon name="list-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="isLivreur" tab="mes-livraisons">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAABpElEQVQ4jc3TzYvNURgH8M/lRpKJGDYWdzFZmGQx5bKymDFFLMhL3rKzEJmNf8DSQtmNDdPQLG2mvGTDxkt5y0IhiUQRKS+ZaK7Fc27OHL87i5uFb53Oc875nu95Xs5TEziO1WZiFA91iXtoFeNwN0JzuvXgXwvORR96y4NamofRKM4u40223optyW5iLT5haX6pLgpysBC7UIjBbbwTUTU7uV4X1R0o9u9XcD+mAbuxEG9LUlUOW3jSyYOEk3iAi1UeThd7EyI3Z7O9FziVrb+neQg7cCkX6BUht8cKnBHhTIlczriASX/+69XSw7EkAv34htM4kOzluFsIrkrzD/TogCP+7pYWPmNBITYl8tiPPdiORblYI71WJXizeHgUm0VOf2W8V+hrV3kxbqWXSyzJ7EPiIzdwQnTMS9zBT+ysZeSB5OVKUb0h0Q01XElC6zAiKtvEfnzBe8zH13omuEv05wQ+YAuWYV7h8WuswXVcww2cwyCe58QNKeSj2IRHOF+RgjY24nHiHkt315ekfXgmKjsm2qsTejCeQn6KvbNw/yP8Bj4iYhRw1KU0AAAAAElFTkSuQmCC">
+      <ion-badge color="warning">70</ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="isLivreur" tab="carte">
+      <ion-icon name="map-outline"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button *ngIf="!isConnected" tab="connexion">
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button  *ngIf="!isLivreur" tab="panier">
+      <ion-icon name="cart-outline"></ion-icon>
+      <ion-badge color="warning">{{(commande$|async).commandeProduits.length}}</ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="isClient" tab="scan-qr">
+      <ion-icon name="qr-code-outline"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
